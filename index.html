@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="inputname" value="" />
+    <button id="click">Click</button>
+    <script>
+      console.log("print nubmer");
+      function printNumbers() {
+        for (var i = 0; i < 10; i++) {
+          setTimeout(function () {
+            console.log(i);
+          }, i * 100);
+        }
+      }
+      printNumbers();
+
+      function printNumbers2() {
+        for (let i = 0; i < 10; i++) {
+          setTimeout(function () {
+            console.log(i);
+          }, i * 1000);
+        }
+      }
+      printNumbers2();
+
+      console.log("print nubmer");
+
+      //   function isItTwo(value) {
+      //     if (value === 2) {
+      //       var two = true;
+      //     }
+      //     return two;
+      //   }
+      //   console.log(isItTwo(2));
+      //   // <- true
+      //   console.log(isItTwo("two"));
+
+      //   const myUser = {
+      //     id: "inputname",
+      //     name: "",
+      //   };
+
+      //   inputChange(myUser);
+
+      //   // bind input to object
+      //   function inputChange(myObject) {
+      //     if (!myObject || !myObject.id) return;
+
+      //     const input = document.getElementById(myObject.id);
+      //     input.addEventListener("change", function (e) {
+      //       console.log(e);
+      //       myObject.name = input.value;
+      //       console.log(input);
+      //     });
+      //   }
+
+      //   const button = document.getElementById("click");
+
+      //   // proxy handler
+      //   const inputHandler = {
+      //     set: function (target, prop, newValue) {
+      //       if (prop == "name" && target.id) {
+      //         // update object property
+      //         target[prop] = newValue;
+
+      //         // update input field value
+      //         document.getElementById(target.id).value = newValue;
+      //         return true;
+      //       } else return false;
+      //     },
+      //   };
+
+      //   // create proxy
+      //   const myUserProxy = new Proxy(myUser, inputHandler);
+
+      //   button.addEventListener("click", () => {
+      //     // console.log("button ");
+      //     // myUser.name = "Test";
+      //     // console.log(myUser);
+      //     // set a new name
+      //     myUserProxy.name = "Craig";
+      //     console.log(myUserProxy.name); // Craig
+      //     console.log(document.getElementById("inputname").value);
+      //   });
+
+      //   const books = {
+      //     "Deep work": "Cal Newport",
+      //     "Atomic Habits": "James Clear",
+      //   };
+      //   const proxyBooksObj = new Proxy(books, {
+      //     get: (target, key) => {
+      //       console.log(`Fetching book ${key} by ${target[key]}`);
+      //       return Reflect.get(target, key);
+      //     },
+      //   });
+
+      //   console.log(proxyBooksObj["Deep "]);
+
+      //   const randomTime1 = Math.ceil(Math.random() * 5000);
+      //   console.log(randomTime1);
+      //   const randomTime2 = Math.ceil(Math.random() * 5000);
+      //   console.log(randomTime2);
+      //   const randomTime3 = Math.ceil(Math.random() * 5000);
+      //   console.log(randomTime3);
+      //   const randomTime4 = Math.ceil(Math.random() * 5000);
+      //   console.log(randomTime4);
+
+      //   function printMe(value) {
+      //     console.log(`${value}`);
+      //   }
+      //   //   setTimeout(() => printMe("Зураг авах"), randomTime1);
+      //   //   setTimeout(() => printMe("Амжилттай зургийг өөрчлөх"), randomTime2);
+      //   //   setTimeout(
+      //   //     () => printMe("Амжилттай бол амжилттай хадгалах"),
+      //   //     randomTime3
+      //   //   );
+      //   //   setTimeout(
+      //   //     () => printMe("Амжилттай бол Амжилттай хадгаллаа гэж хэвлэх"),
+      //   //     randomTime4
+      //   //   );
+
+      //   console.log("callback hell");
+      //   setTimeout(() => {
+      //     printMe("Зураг авах");
+      //     setTimeout(() => {
+      //       printMe("Амжилттай зургийг өөрчлөх");
+      //       setTimeout(() => {
+      //         printMe("Амжилттай бол амжилттай хадгалах");
+      //         setTimeout(
+      //           () => printMe("Амжилттай бол Амжилттай хадгаллаа гэж хэвлэх"),
+      //           randomTime4
+      //         );
+      //       }, randomTime3);
+      //     }, randomTime2);
+      //   }, randomTime1);
+    </script>
+  </body>
+</html>
