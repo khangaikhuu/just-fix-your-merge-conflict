@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var Human = function () {
+        this.canWalk = true;
+        this.canSpeak = true;
+      };
+
+      Human.prototype.greet = function () {
+        if (this.canSpeak) {
+          // checks whether this prototype has instance of speak
+          this.name = "Steve";
+          console.log("Hi, I am " + this.name);
+        } else {
+          console.log("Sorry i can not speak");
+        }
+      };
+
+      obj = Object.create(Human.prototype);
+      obj.greet();
+
+      Human.prototype.greet = function () {
+        if (this.canSpeak) {
+          console.log("Hi, I am " + this.name);
+        }
+      };
+
+      var Student = function (name, title) {
+        Human.call(this);
+        // Instantiating the Human object and getting the members of the class
+        this.name = name;
+        // inheriting the name from the human class
+
+        this.title = title;
+        // getting the title from the called function
+      };
+
+      Student.prototype = Object.create(Human.prototype);
+      Student.prototype.constructor = Student;
+
+      Student.prototype.greet = function () {
+        if (this.canSpeak) {
+          console.log("Hi, I am " + this.name + ", the " + this.title);
+        }
+      };
+
+      var Customer = function (name) {
+        Human.call(this);
+        // inheriting from the base class
+        this.name = name;
+      };
+
+      Customer.prototype = Object.create(Human.prototype);
+      // creating the object
+      Customer.prototype.constructor = Customer;
+
+      var bill = new Student("Billy", "Teacher");
+      var carter = new Customer("Carter");
+      var andy = new Student("Andy", "Bill");
+      var virat = new Customer("Virat");
+
+      bill.greet();
+
+      // Hi, I am Billy, the Teacher
+
+      carter.greet();
+      // Hi, I am Carter
+
+      andy.greet();
+
+      // Hi, I am Andy, the Bill
+      virat.greet();
+    </script>
+  </body>
+</html>
