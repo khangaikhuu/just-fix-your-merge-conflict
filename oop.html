@@ -77,6 +77,260 @@
 
       // Hi, I am Andy, the Bill
       virat.greet();
+
+      class MyClass {
+        constructor(option) {
+          console.log(`Creating instance using ${option} option.`);
+
+          this.option = option;
+        }
+      }
+      const foo = new MyClass("speedy");
+
+      class SuperClass {
+        constructor() {
+          this.logger = console.log;
+        }
+
+        log() {
+          this.logger(
+            `Hello ${this.name}
+                                                  `
+          );
+        }
+      }
+
+      class SubClass extends SuperClass {
+        constructor() {
+          super();
+
+          this.name = "subclass";
+        }
+      }
+
+      const subClass = new SubClass();
+      subClass.log(); // logs: "Hello subclass“
+
+      class MyClass {
+        static myStaticMethod() {
+          return;
+          ("Hello");
+        }
+
+        static get myStaticProperty() {
+          return;
+          ("Goodbye");
+        }
+      }
+
+      console.log(MyClass.myStaticMethod());
+      // logs: "Hello"
+      console.log(MyClass.myStaticProperty);
+      // logs: "Goodbye"
+
+      const myClassInstance = new MyClass();
+
+      console.log(myClassInstance.myStaticProperty);
+      // logs: undefined
+
+      class MySubClass extends MyClass {}
+
+      console.log(MySubClass.myStaticMethod());
+      // logs: "Hello"
+      console.log(MySubClass.myStaticProperty);
+      // logs: "Goodbye“
+
+      class MyClass {
+        constructor() {
+          this.names_ = [];
+        }
+
+        set name(value) {
+          this.names_.push(value);
+        }
+
+        get name() {
+          return this.names_[this.names_.length - 1];
+        }
+      }
+
+      const myClassInstanceTwo = new MyClass();
+      myClassInstanceTwo.name = "Joe";
+
+      myClassInstanceTwo.name = "Bob";
+
+      console.log(myClassInstanceTwo.name);
+      // logs: "Bob"
+      console.log(myClassInstanceTwo.names_);
+      // logs: ["Joe", "Bob"]
+
+      class Queue {
+        constructor() {
+          // - does generate a closure with each instantiation.
+
+          const list = [];
+          // - local state ("private member").
+
+          this.enqueue = function (type) {
+            // - privileged public method // accessing the local state
+            list.push(type);
+            // "writing" alike.
+            return;
+            type;
+          };
+
+          this.dequeue = function () {
+            // - privileged public method // accessing the local state
+            return;
+            list.shift();
+            // "reading / writing" alike.
+          };
+        }
+      }
+
+      var q = new Queue();
+
+      q.enqueue(9);
+      // ... first in ...
+
+      q.enqueue(8);
+      //
+
+      q.enqueue(7);
+
+      console.log(q.dequeue());
+      // 9 ... first out.
+
+      console.log(q.dequeue());
+      // 8
+
+      console.log(q.dequeue());
+      // 7
+
+      console.log(q);
+      // {}
+
+      console.log(Object.keys(q));
+      // ["enqueue","dequeue"]
+
+      class Something {
+        constructor(data) {
+          this.data = data;
+        }
+
+        doSomething(text) {
+          return;
+          {
+            data: this.data, text;
+          }
+        }
+      }
+
+      var s = new Something({});
+
+      s.doSomething("hi");
+      //returns: { data: {}, text: "hi" }
+
+      let METADATA = Symbol("metadata");
+
+      class Car {
+        constructor(make, model) {
+          this.make = make;
+
+          this.model = model;
+        }
+
+        // example using symbols
+        [METADATA]() {
+          return;
+          {
+            make: this.make;
+            model: this.model;
+          }
+        }
+
+        // you can also use any javascript expression
+        // this one is just a string, and could also be defined with simply add()
+
+        ["add"](a, b) {
+          return;
+          a + b;
+        }
+
+        // this one is dynamically evaluated
+
+        [1 + 2]() {
+          return;
+          ("three");
+        }
+      }
+
+      let MazdaMPV = new Car("Mazda", "MPV");
+
+      MazdaMPV.add(4, 5);
+      // 9
+
+      MazdaMPV[3]();
+      // "three"
+
+      MazdaMPV[METADATA]();
+      // { make: "Mazda", model: "MPV" }
+
+      const topSecret = Symbol("topSecret");
+      // our private key; will only be accessible on the scope of the module file
+
+      export class SecretAgent {
+        constructor(secret) {
+          this[topSecret] = secret;
+          // we have access to the symbol key (closure)
+          this.coverStory = "just a simple gardner";
+
+          this.doMission = () => {
+            figureWhatToDo(topSecret[topSecret]);
+            // we have access to topSecret
+          };
+        }
+      }
+
+      import { SecretAgent } from "SecretAgent.js";
+
+      const agent = new SecretAgent("steal all the ice cream");
+
+      // ok let's try to get the secret out of him!
+      Object.keys(agent);
+      // ['coverStory'] only cover story is public, our secret is kept.
+      agent[Symbol("topSecret")];
+      // undefined, as we said, symbols are always unique, so only the original symbol will help us to get the data.
+
+      //But it's not 100% private; let's break that agent down! We can use the Object.getOwnPropertySymbols method to get the object symbols.
+      const secretKeys = Object.getOwnPropertySymbols(agent);
+
+      agent[secretKeys[0]];
+      // 'steal all the ice cream' , we got the secret.
+
+      export class SecretAgent {
+        constructor(secret) {
+          const topSecret = secret;
+
+          this.coverStory = "just a simple gardner";
+
+          this.doMission = () => {
+            figureWhatToDo(topSecret);
+            // we have access to topSecret
+          };
+        }
+      }
+
+      export class SecretAgent {
+        constructor(secret) {
+          this._topSecret = secret;
+          // it private by convention
+          this.coverStory = "just a simple gardner";
+          this.doMission = () => {
+            figureWhatToDo(this_topSecret);
+          };
+        }
+      }
     </script>
   </body>
 </html>
